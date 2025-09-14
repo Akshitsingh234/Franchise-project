@@ -3,6 +3,7 @@ import { ArrowRight, Building, Users, TrendingUp } from "lucide-react";
 import { CheckCircle, DollarSign, BookOpen, Handshake } from "lucide-react";
 import { Award, Globe } from "lucide-react";
 import Spline from "@splinetool/react-spline";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function WelcomePage() {
   const benefits = [
@@ -115,7 +116,7 @@ export default function WelcomePage() {
               className="bg-gray-700/70 p-6 rounded-2xl text-center shadow-sm hover:shadow-lg transition-all duration-300 
     transform hover:-translate-y-2"
             >
-              <div className="mx-auto w-12 h-12 bg-indigo-700 http://localhost:5173/ rounded-full flex items-center justify-center mb-4">
+              <div className="mx-auto w-12 h-12 bg-indigo-700 rounded-full flex items-center justify-center mb-4">
                 <benefit.icon className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-lg font-semibold mb-2 text-white">

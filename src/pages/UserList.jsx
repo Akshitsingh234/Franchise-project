@@ -1,6 +1,8 @@
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../Components/AuthContext";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function UserList() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -9,7 +11,7 @@ export default function UserList() {
   useEffect(() => {
     if (!token) return;
 
-    fetch("http://localhost:8080/api/users/all", {
+    fetch(`${API_URL}/api/users/all`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

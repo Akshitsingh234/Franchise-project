@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import { Building } from "lucide-react"; // Lucide icon instead of emoji
 import Navbar from "../Components/Navbar.jsx";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function Home() {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/category/all")
+    fetch(`${API_URL}/api/category/all`)
       .then((res) => res.json())
       .then((data) => setCategories(data))
       .catch((err) => console.error(err));

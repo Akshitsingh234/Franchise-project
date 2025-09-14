@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Building } from "lucide-react";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function CategoryPage() {
   const { categoryName } = useParams();
   const [franchises, setFranchises] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/franchises/${categoryName}`)
+    fetch(`${API_URL}/api/franchises/${categoryName}`)
       .then((res) => res.json())
       .then((data) => setFranchises(data))
       .catch((err) => console.error(err));

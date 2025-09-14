@@ -2,6 +2,8 @@ import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Components/AuthContext";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function AdminPage() {
   const [categories, setCategories] = useState([]);
   const [newCategory, setNewCategory] = useState("");
@@ -19,7 +21,7 @@ export default function AdminPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/category/all")
+    fetch(`${API_URL}/api/category/all`)
       .then((res) => res.json())
       .then((data) => setCategories(data))
       .catch((err) => console.error(err));
@@ -27,7 +29,7 @@ export default function AdminPage() {
 
   const handleAddCategory = () => {
     if (!newCategory.trim()) return;
-    fetch("http://localhost:8080/api/category/add", {
+    fetch(`${API_URL}/api/category/add`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: newCategory }),
@@ -41,7 +43,7 @@ export default function AdminPage() {
 
   const handleLogout = async () => {
     try {
-      await fetch("http://localhost:8080/api/auth/logout", {
+      await fetch(`${API_URL}/api/auth/logout`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -53,7 +55,7 @@ export default function AdminPage() {
   };
 
   const handleDeleteCategory = (id) => {
-    fetch(`http://localhost:8080/api/category/${id}`, { method: "DELETE" })
+    fetch(`${API_URL}/api/category/${id}`, { method: "DELETE" })
       .then(() => setCategories(categories.filter((c) => c.id !== id)));
   };
 
@@ -82,7 +84,7 @@ export default function AdminPage() {
     }
 
     const encodedName = encodeURIComponent(selectedCategory.name);
-    fetch(`http://localhost:8080/api/franchises/add/${encodedName}`, {
+    fetch(`${API_URL}/api/franchises/add/${encodedName}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(franchiseForm),
@@ -101,7 +103,7 @@ export default function AdminPage() {
   };
 
   const handleDeleteFranchise = (catId, franchiseId) => {
-    fetch(`http://localhost:8080/api/franchises/${franchiseId}`, {
+    fetch(`${API_URL}/api/franchises/${franchiseId}`, {
       method: "DELETE",
     }).then(() => {
       setCategories(

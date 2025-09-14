@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Building2, DollarSign, MapPin, Users, ClipboardList } from "lucide-react";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function FranchiseDetails() {
   const { id } = useParams();
   const [franchise, setFranchise] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/franchises/id/${id}`)
+    fetch(`${API_URL}/api/franchises/id/${id}`)
       .then((res) => res.json())
       .then(setFranchise)
       .catch((err) => console.error(err));
