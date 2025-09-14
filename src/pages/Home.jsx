@@ -22,7 +22,7 @@ export default function Home() {
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-800 via-purple-800 to-pink-900 opacity-30 -z-10"></div>
 
       {/* Navbar */}
-      <Navbar />
+     
 
       {/* Hero Section */}
       <div className="text-center mt-12 mb-10 px-4">
